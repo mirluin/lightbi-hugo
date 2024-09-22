@@ -67,57 +67,57 @@
     </div>
     <hr style="border: 1px dashed #ccc; margin: 10px 0;"> <!-- Linea punteggiata -->
 
-<div class="d-flex justify-content-between align-items-center"> <!-- Aggiungi align-items-center -->
-    <div class="author-content flex-grow-1">
-        {{ $authorPage.Content }}
-    </div>
+    <div class="d-flex justify-content-between align-items-center"> <!-- Aggiungi align-items-center -->
+        <div class="author-content flex-grow-1">
+            {{ $authorPage.Content }}
+        </div>
 
-    <div class="author-image d-flex flex-column align-items-center" style="flex: 0 0 200px; margin-left: 20px;">
-        {{ $image := $authorPage.Resources.Get $authorPage.Params.photo }}
-        {{ if $image }}
-            {{ $resizedImage := $image.Fill "200x200" }}
-            <img class="circular-image" src="{{ $resizedImage.RelPermalink }}" alt="{{ $author }}"/>
-        {{ else }}
-            <p>Image not found: {{ $authorPage.Params.photo }}</p>
-        {{ end }}
-
-        <div class="social-links">
-            {{ if $authorPage.Params.website }}
-                <a href="{{ $authorPage.Params.website }}" target="_blank">
-                    <i class="bi bi-globe"></i>
-                </a>
+        <div class="author-image d-flex flex-column align-items-center" style="flex: 0 0 200px; margin-left: 20px;">
+            {{ $image := $authorPage.Resources.Get $authorPage.Params.photo }}
+            {{ if $image }}
+                {{ $resizedImage := $image.Fill "200x200" }}
+                <img class="circular-image" src="{{ $resizedImage.RelPermalink }}" alt="{{ $author }}"/>
+            {{ else }}
+                <p>Image not found: {{ $authorPage.Params.photo }}</p>
             {{ end }}
 
-            {{ if $authorPage.Params.rss }}
-                <a href="{{ $authorPage.Params.rss }}" target="_blank">
-                    <i class="bi bi-rss"></i>
-                </a>
-            {{ end }}
+            <div class="social-links">
+                {{ if $authorPage.Params.website }}
+                    <a href="{{ $authorPage.Params.website }}" target="_blank">
+                        <i class="bi bi-globe"></i>
+                    </a>
+                {{ end }}
 
-            {{ if $authorPage.Params.facebook }}
-                <a href="{{ $authorPage.Params.facebook }}" target="_blank">
-                    <i class="bi bi-facebook"></i>
-                </a>
-            {{ end }}
+                {{ if $authorPage.Params.rss }}
+                    <a href="{{ $authorPage.Params.rss }}" target="_blank">
+                        <i class="bi bi-rss"></i>
+                    </a>
+                {{ end }}
 
-            {{ if $authorPage.Params.linkedin }}
-                <a href="{{ $authorPage.Params.linkedin }}" target="_blank">
-                    <i class="bi bi-linkedin"></i>
-                </a>
-            {{ end }}
+                {{ if $authorPage.Params.facebook }}
+                    <a href="{{ $authorPage.Params.facebook }}" target="_blank">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+                {{ end }}
+
+                {{ if $authorPage.Params.linkedin }}
+                    <a href="{{ $authorPage.Params.linkedin }}" target="_blank">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+                {{ end }}
+            </div>
         </div>
     </div>
-</div>
 
-</div>
+  </div>
 
 
     {{ else }}
         <p>Pagina dell'autore non trovata.</p> <!-- Debug: mostra se la pagina non esiste -->
     {{ end }}
-{{ else }}
+    {{ else }}
     
-{{ end }}
+    {{ end }}
 
 
     <div class="col-lg-8 offset-lg-2 col-md-12 offset-md-1 pt-4">
