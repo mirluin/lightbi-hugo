@@ -1,0 +1,74 @@
+.authors-section {
+  display: flex;
+  flex-direction: row; /* Dispone le colonne orizzontalmente */
+}
+
+.author-content {
+  flex: 0 0 70%; /* Colonna per il contenuto */
+  padding-right: 20px; /* Spaziatura a destra */
+}
+
+.author-info {
+  background-color: rgba(231, 231, 231, .7);
+}
+
+.author-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+}
+
+.author-image img {
+    margin: 0; /* Rimuove il margine */
+    display: block; /* Assicura che l'immagine non abbia margini di default */
+}
+
+.circular-image {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 50%;
+    margin: 0;
+    display: block;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center; /* Centra le icone orizzontalmente */
+  gap: 20px; /* Spaziatura tra le icone */
+  margin-top: 15px; /* Distanza dall'immagine */
+}
+
+.social-links a {
+  position: relative;
+  text-decoration: none;
+  color: #333; /* Colore dell'icona di default */
+  transition: color 0.3s; /* Transizione del colore */
+}
+
+.social-links a:hover {
+  color: #008aff; /* Colore al passaggio del mouse */
+}
+
+.social-links a .tooltip {
+  visibility: hidden;
+  width: 80px; /* Larghezza del tooltip */
+  background-color: #555; /* Colore di sfondo del tooltip */
+  color: #fff; /* Colore del testo */
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* Posiziona sopra l'icona */
+  left: 50%;
+  margin-left: -40px; /* Centra il tooltip */
+  opacity: 0; /* Inizialmente invisibile */
+  transition: opacity 0.3s;
+}
+
+.social-links a:hover .tooltip {
+  visibility: visible;
+  opacity: 1; /* Mostra il tooltip al passaggio del mouse */
+}

@@ -52,45 +52,73 @@
       {{ end }}
     </div>
 
-    {{ if not .Site.Params.hideAuthor }}
-    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 mt-3">
-      <div class="card">
-        <div class="row no-gutters">
 
-          {{ if .Site.Params.Author.authorPostImage }}
-          <div class="col-md-2 ">
-            <div class="card-body ">
-              {{- $authorPostImage := "" -}}
-              {{ $authorPostImage = .Site.Params.Author.authorPostImage }}
-              {{ $image := resources.Get $authorPostImage }}
-              <img src="{{ $image.RelPermalink }}" class="img-responsive img-50 img-round" alt="">
-            </div>
-          </div>
-          {{ end }}
+{{ $authors := .Params.authors }}
+{{ if $authors }}
+    {{ $author := index $authors 0 }} <!-- Prendi il primo autore dall'array -->
+    {{ $authorPage := site.GetPage (printf "authors/%s" (urlize $author)) }} <!-- Ottieni la pagina dell'autore usando un percorso diretto -->
 
-
-          <div class="col-md-10">
-            <div class="card-body p-1.1">
-              <p class="p-0 m-0"><small class="text-muted">Written By</small></p>
-              <p class="card-text fs-5 m-0">
-                 
-                {{ if .Site.Params.Author.name }}
-                {{ .Site.Params.Author.name | safeHTML }}
-                {{ else }}
-                {{ .Site.Author.name | safeHTML }}
-                {{ end }}
-
-              </p>
-
-               {{ if .Site.Params.Author.authorInfo }}
-                <p class="card-text fs-6  m-0">{{ .Site.Params.Author.authorInfo | safeHTML }}</p>
-              {{ end }}
-            </div>
-          </div>
-        </div>
-      </div>
+    {{ if $authorPage }} <!-- Verifica se l'autore è presente -->
+        <!-- Riquadro Riguardo il Macchinista -->
+<div class="author-info col-lg-8 offset-lg-2 col-md-10 offset-md-1 mt-3">
+    <div class="author-info-header mt-3" style="display: flex; justify-content: space-between; align-items: center;">
+        <h3>Riguardo il macchinista</h3>
+        <p><a href="{{ $authorPage.Permalink }}">Pagina archivio del macchinista</a></p>
     </div>
+    <hr style="border: 1px dashed #ccc; margin: 10px 0;"> <!-- Linea punteggiata -->
+
+<div class="d-flex justify-content-between align-items-center"> <!-- Aggiungi align-items-center -->
+    <div class="author-content flex-grow-1">
+        {{ $authorPage.Content }}
+    </div>
+
+    <div class="author-image d-flex flex-column align-items-center" style="flex: 0 0 200px; margin-left: 20px;">
+        {{ $image := $authorPage.Resources.Get $authorPage.Params.photo }}
+        {{ if $image }}
+            {{ $resizedImage := $image.Fill "200x200" }}
+            <img class="circular-image" src="{{ $resizedImage.RelPermalink }}" alt="{{ $author }}"/>
+        {{ else }}
+            <p>Image not found: {{ $authorPage.Params.photo }}</p>
+        {{ end }}
+
+        <div class="social-links">
+            {{ if $authorPage.Params.website }}
+                <a href="{{ $authorPage.Params.website }}" target="_blank">
+                    <i class="bi bi-globe"></i>
+                </a>
+            {{ end }}
+
+            {{ if $authorPage.Params.rss }}
+                <a href="{{ $authorPage.Params.rss }}" target="_blank">
+                    <i class="bi bi-rss"></i>
+                </a>
+            {{ end }}
+
+            {{ if $authorPage.Params.facebook }}
+                <a href="{{ $authorPage.Params.facebook }}" target="_blank">
+                    <i class="bi bi-facebook"></i>
+                </a>
+            {{ end }}
+
+            {{ if $authorPage.Params.linkedin }}
+                <a href="{{ $authorPage.Params.linkedin }}" target="_blank">
+                    <i class="bi bi-linkedin"></i>
+                </a>
+            {{ end }}
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+    {{ else }}
+        <p>Pagina dell'autore non trovata.</p> <!-- Debug: mostra se la pagina non esiste -->
     {{ end }}
+{{ else }}
+    
+{{ end }}
+
 
     <div class="col-lg-8 offset-lg-2 col-md-12 offset-md-1 pt-4">
       {{ if ne .Type "page" }}

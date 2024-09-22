@@ -50,7 +50,7 @@
           {{ if .Site.Params.since }}
           {{ .Site.Params.since }} - {{ .Site.LastChange.Format "2006" }}
           {{ else }}
-          {{ .Site.LastChange.Format "2006" }}
+          {{ .Site.Lastmod.Format "2006" }}
           {{ end }}
 
           {{ if .Site.Title }}
