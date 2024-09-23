@@ -3,20 +3,8 @@
   flex-direction: row;
 }
 
-.author-content {
-  flex: 0 0 70%; /* Colonna per il contenuto */
-  padding-right: 20px; /* Spaziatura a destra */
-}
-
 .author-info {
   background-color: rgba(231, 231, 231, .7);
-}
-
-.author-image {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0;
 }
 
 .author-image img {
