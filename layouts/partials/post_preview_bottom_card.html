@@ -30,9 +30,10 @@
             </div>
 
             {{ with partial "get_image" . }}
-            <img src="{{ ( .Resize " 500x" ).RelPermalink }}" alt="{{ .Title }}"
-                class="card-img-bottom img-fluid lazyload">
+                <img src="{{ ( .Fill "500x375" ).RelPermalink }}" alt="{{ .Title }}"
+                    class="card-img-bottom img-fluid lazyload">
             {{ end }}
+
 
             {{ if .Params.video }}
             <video loop autoplay muted playsinline class="img-title">
