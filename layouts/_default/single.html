@@ -13,14 +13,34 @@
             {{ .Date.Year }}
           </span>
           {{ if .Params.authors }}
-            <span class="text-muted ms-3">
-              <i class="bi bi-person"></i> 
-              {{ delimit .Params.authors ", " }}
-            </span>
-          {{ end }}
+          <span class="text-muted ms-3">
+            <i class="bi bi-person"></i> 
+            {{ $authorCount := len .Params.authors }}
+            {{ range $index, $author := .Params.authors }}
+              {{ $authorPage := site.GetPage (printf "authors/%s" (urlize $author)) }}
+              {{ if $authorPage }}
+                <a href="#author-info" class="text-muted">{{ $author }}</a>
+              {{ else }}
+                {{ $author }}
+              {{ end }}
+              {{ if lt (add $index 1) $authorCount }}, {{ end }}
+            {{ end }}
+          </span>
+        {{ end }}
         </p>
       </div>
     </div>
+
+    <!-- ✨ TAGS SPOSTATI QUI (sopra il contenuto) -->
+    {{ if .Params.tags }}
+    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 pt-2 pb-3">
+      <div class="blog-tags text-center">
+        {{ range .Params.tags }}
+        <a href="{{ $.Site.LanguagePrefix | absURL }}tags/{{ . | urlize }}/">{{ . }}</a>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
 
     <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 ">
 
@@ -40,17 +60,6 @@
         {{ end }}
       </div>
     </div>
-
-    <!-- ✨ TAGS SPOSTATI QUI (sopra il contenuto) -->
-    {{ if .Params.tags }}
-    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 pt-2 pb-3">
-      <div class="blog-tags text-center">
-        {{ range .Params.tags }}
-        <a href="{{ $.Site.LanguagePrefix | absURL }}tags/{{ . | urlize }}/">{{ . }}</a>
-        {{ end }}
-      </div>
-    </div>
-    {{ end }}
 
     <!-- CONTENUTO ARTICOLO -->
     <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 pt-2">
