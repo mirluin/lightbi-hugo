@@ -1,6 +1,27 @@
 {{ define "main" }}
 <div class="container" role="main">
   <div class="row">
+
+    <!-- ✨ DATA E AUTORE AGGIUNTI QUI -->
+    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+      <div class="text-center mt-3 mb-2">
+        <p class="post-meta">
+          <span class="text-muted">
+            <i class="bi bi-calendar3"></i> 
+            {{ .Date.Day }} 
+            {{ index (slice "gennaio" "febbraio" "marzo" "aprile" "maggio" "giugno" "luglio" "agosto" "settembre" "ottobre" "novembre" "dicembre") (sub .Date.Month 1) }} 
+            {{ .Date.Year }}
+          </span>
+          {{ if .Params.authors }}
+            <span class="text-muted ms-3">
+              <i class="bi bi-person"></i> 
+              {{ delimit .Params.authors ", " }}
+            </span>
+          {{ end }}
+        </p>
+      </div>
+    </div>
+
     <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 ">
 
       <div class="card-image card-image-blog p-0">
@@ -17,23 +38,6 @@
           <source src="{{ .Params.video }}">
         </video>
         {{ end }}
-      </div>
-    </div>
-
-    <!-- ✨ DATA E AUTORE AGGIUNTI QUI -->
-    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
-      <div class="text-center mt-3 mb-2">
-        <p class="post-meta">
-          <span class="text-muted">
-            <i class="bi bi-calendar3"></i> {{ .Date.Format "2 January 2006" }}
-          </span>
-          {{ if .Params.authors }}
-            <span class="text-muted ms-3">
-              <i class="bi bi-person"></i> 
-              {{ delimit .Params.authors ", " }}
-            </span>
-          {{ end }}
-        </p>
       </div>
     </div>
 
@@ -82,7 +86,7 @@
     {{ $authorPage := site.GetPage (printf "authors/%s" (urlize $author)) }} <!-- Ottieni la pagina dell'autore -->
 
     {{ if $authorPage }} <!-- Verifica se l'autore è presente -->
-    <div class="author-info col-lg-8 offset-lg-2 col-md-10 offset-md-1 mt-3">
+    <div id="author-info" class="author-info col-lg-8 offset-lg-2 col-md-10 offset-md-1 mt-3">
         <div class="author-info-header mt-3 d-flex justify-content-between align-items-center">
             <h3>Riguardo il macchinista</h3>
             <p><a href="{{ $authorPage.Permalink }}">Pagina archivio del macchinista</a></p>
