@@ -9,10 +9,10 @@ a.nav-link {
     padding-right: 0.4rem !important;
 }
 
-/* Desktop medio (tablet landscape, laptop piccoli) */
-@media (min-width: 992px) and (max-width: 1399px) {
+/* Desktop piccolo/medio (992-1199px) - tablet landscape, laptop piccoli */
+@media (min-width: 992px) and (max-width: 1199px) {
   a.nav-link {
-    font-size: 14px;  /* Ancora più piccolo per schermi medi */
+    font-size: 13px;
     letter-spacing: -0.08em;
     padding-left: 0.3rem !important;
     padding-right: 0.3rem !important;
@@ -21,19 +21,35 @@ a.nav-link {
     font-size: 1rem;
   }
   .navbar .payoff {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
   }
 }
 
-/* Desktop grande (1400px+) */
-@media (min-width: 1400px) {
+/* Desktop medio-grande (1200-1399px) - laptop standard */
+@media (min-width: 1200px) and (max-width: 1399px) {
+  a.nav-link {
+    font-size: 14px;
+    letter-spacing: -0.03em;
+    padding-left: 0.4rem !important;
+    padding-right: 0.4rem !important;
+  }
+  .navbar-brand {
+    font-size: 1.4rem;
+  }
+  .navbar .payoff {
+    font-size: 0.9rem;
+  }
+}
+
+/* Desktop grande (1400-1919px) */
+@media (min-width: 1400px) and (max-width: 1919px) {
   a.nav-link {
     font-size: 15px;
     padding-left: 0.6rem !important;
     padding-right: 0.6rem !important;
   }
   .navbar-brand {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
   }
   .navbar .payoff {
     font-size: 0.9rem;
