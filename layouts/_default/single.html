@@ -20,28 +20,50 @@
       </div>
     </div>
 
-    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 pt-4">
+    <!-- ✨ DATA E AUTORE AGGIUNTI QUI -->
+    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+      <div class="text-center mt-3 mb-2">
+        <p class="post-meta">
+          <span class="text-muted">
+            <i class="bi bi-calendar3"></i> {{ .Date.Format "2 January 2006" }}
+          </span>
+          {{ if .Params.authors }}
+            <span class="text-muted ms-3">
+              <i class="bi bi-person"></i> 
+              {{ delimit .Params.authors ", " }}
+            </span>
+          {{ end }}
+        </p>
+      </div>
+    </div>
+
+    <!-- ✨ TAGS SPOSTATI QUI (sopra il contenuto) -->
+    {{ if .Params.tags }}
+    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 pt-2 pb-3">
+      <div class="blog-tags text-center">
+        {{ range .Params.tags }}
+        <a href="{{ $.Site.LanguagePrefix | absURL }}tags/{{ . | urlize }}/">{{ . }}</a>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+
+    <!-- CONTENUTO ARTICOLO -->
+    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 pt-2">
       <article role="main" class="blog-post">
         {{ .Content }}
       </article>
     </div>
   </div>
 
-  {{ if or .Params.tags (not .Site.Params.hideAuthor) ($.Param "socialShare") (ne .Type "page") }}
+  <!-- ✨ CONDIZIONE MODIFICATA: rimosso .Params.tags dalla condizione -->
+  {{ if or (not .Site.Params.hideAuthor) ($.Param "socialShare") (ne .Type "page") }}
   <div class="row">
     <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
       <hr class="m-0"/>
     </div>
-    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 pt-2">
-      {{ if .Params.tags }}
-      <div class="blog-tags">
-        {{ range .Params.tags }}
-        <a href="{{ $.Site.LanguagePrefix | absURL }}tags/{{ . | urlize }}/">{{ . }}</a>
-        {{ end }}
-      </div>
-      {{ end }}
-    </div>
 
+    <!-- Social Share -->
     <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 pt-4">
       {{ if $.Param "socialShare" }}
       <section id="social-share">
@@ -118,6 +140,7 @@
 
 
 
+    <!-- ✨ PULSANTI PREV/NEXT con controllo hidePrevNext -->
     <div class="col-lg-8 offset-lg-2 col-md-12 offset-md-1 pt-4">
       {{ if ne .Type "page" }}
       {{ if not .Params.hidePrevNext }}
@@ -150,6 +173,7 @@
   {{ end }}
 </div>
 
+<!-- Related Posts -->
 <div class="">
   {{ $has_related := false }}
   {{ if .Site.Params.showRelatedPosts }}
@@ -177,6 +201,7 @@
   {{ end }}
   {{ end }}
 
+  <!-- Disqus Comments -->
   {{ if (.Params.comments) | or (and (or (not (isset .Params "comments")) (eq .Params.comments nil)) (and
   .Site.Params.comments (ne .Type "page"))) }}
   {{ if .Site.DisqusShortname }}
