@@ -1,6 +1,61 @@
+/* =================================
+   NAVBAR RESPONSIVE OPTIMIZATION
+   ================================= */
+
+/* Base navbar links (mobile e desktop piccolo) */
 a.nav-link {
-    font-size: 15px;
+    font-size: 14px;
+    padding-left: 0.4rem !important;
+    padding-right: 0.4rem !important;
 }
+
+/* Desktop medio (tablet landscape, laptop piccoli) */
+@media (min-width: 992px) and (max-width: 1399px) {
+  a.nav-link {
+    font-size: 14px;  /* Ancora più piccolo per schermi medi */
+    letter-spacing: -0.08em;
+    padding-left: 0.3rem !important;
+    padding-right: 0.3rem !important;
+  }
+  .navbar-brand {
+    font-size: 1rem;
+  }
+}
+
+/* Desktop grande (1400px+) */
+@media (min-width: 1400px) {
+  a.nav-link {
+    font-size: 14px;  /* Torna a dimensione leggibile */
+    letter-spacing: -0.05em;
+    padding-left: 0.6rem !important;
+    padding-right: 0.6rem !important;
+  }
+  .navbar-brand {
+    font-size: 1.3rem;
+  }
+}
+
+/* Desktop extra-large (1920px+) */
+@media (min-width: 1920px) {
+  a.nav-link {
+    font-size: 15px;  /* Dimensione originale */
+    padding-left: 0.8rem !important;
+    padding-right: 0.8rem !important;
+  }
+}
+
+/* Mobile: mantieni leggibile */
+@media (max-width: 991px) {
+  a.nav-link {
+    font-size: 15px;
+    padding: 0.5rem 1rem !important;
+    letter-spacing: 1px;
+  }
+}
+
+/* =================================
+   AUTHORS SECTION
+   ================================= */
 
 .authors-section {
   display: flex;
