@@ -20,25 +20,30 @@ a.nav-link {
   .navbar-brand {
     font-size: 1rem;
   }
+  .navbar .payoff {
+    font-size: 0.8rem;
+  }
 }
 
 /* Desktop grande (1400px+) */
 @media (min-width: 1400px) {
   a.nav-link {
-    font-size: 14px;  /* Torna a dimensione leggibile */
-    letter-spacing: -0.05em;
+    font-size: 15px;
     padding-left: 0.6rem !important;
     padding-right: 0.6rem !important;
   }
   .navbar-brand {
     font-size: 1.3rem;
   }
+  .navbar .payoff {
+    font-size: 0.9rem;
+  }
 }
 
 /* Desktop extra-large (1920px+) */
 @media (min-width: 1920px) {
   a.nav-link {
-    font-size: 15px;  /* Dimensione originale */
+    font-size: 15px;
     padding-left: 0.8rem !important;
     padding-right: 0.8rem !important;
   }
