@@ -2,7 +2,7 @@
 <div class="container" role="main">
   <div class="row">
 
-    <!-- ✨ DATA E AUTORE AGGIUNTI QUI -->
+    <!-- ✨ DATA PUBBLICAZIONE -->
     <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
       <div class="text-center mt-3 mb-2">
         <p class="post-meta">
@@ -12,21 +12,6 @@
             {{ index (slice "gennaio" "febbraio" "marzo" "aprile" "maggio" "giugno" "luglio" "agosto" "settembre" "ottobre" "novembre" "dicembre") (sub .Date.Month 1) }} 
             {{ .Date.Year }}
           </span>
-          {{ if .Params.authors }}
-          <span class="text-muted ms-3">
-            <i class="bi bi-person"></i> 
-            {{ $authorCount := len .Params.authors }}
-            {{ range $index, $author := .Params.authors }}
-              {{ $authorPage := site.GetPage (printf "authors/%s" (urlize $author)) }}
-              {{ if $authorPage }}
-                <a href="#author-info" class="text-muted">{{ $author }}</a>
-              {{ else }}
-                {{ $author }}
-              {{ end }}
-              {{ if lt (add $index 1) $authorCount }}, {{ end }}
-            {{ end }}
-          </span>
-        {{ end }}
         </p>
       </div>
     </div>
